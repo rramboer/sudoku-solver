@@ -19,10 +19,10 @@ run:
 	./sudoku
 
 demo_run:
-	./sudoku -d
+	./sudoku --demo
 
 test_run:
-	./sudoku -t
+	./sudoku --test
 
 clean:
 	rm sudoku
