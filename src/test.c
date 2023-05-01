@@ -24,7 +24,10 @@ int ** createPuzzleTest(const char* input) {
 }
 
 void read(const char* filename, char* column1[], /*int* column2,*/ int* num_rows, int input) {
-    int numTests = 1000000 ? input == 100 : (int)(((float)input / 100.0) * 1000000.0);
+    int numTests = 1000000;
+    if (input < 100) {
+        numTests = (int) ((float) input / 100.0 * (float) numTests);
+    }
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("Error: Could not open file %s\n", filename);
