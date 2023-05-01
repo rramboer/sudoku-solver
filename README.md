@@ -1,11 +1,5 @@
 # Sudoku Solver
 
 ## Usage
-    Demo:
-    ```bash
-    make demo
-    ```
-    Run on your own sudoku:
-    ```bash
-    make
-    ```
+    Demo: `make demo`
+    Run on your own sudoku: `make`
