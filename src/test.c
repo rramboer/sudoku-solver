@@ -1,5 +1,4 @@
 #include "../include/sudoku.h"
-#include <stdio.h>
 
 int ** createPuzzleTest(const char* input) {
     int ** puzzle;
