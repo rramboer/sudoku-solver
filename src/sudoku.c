@@ -6,19 +6,25 @@ int UNSOLVED = 9 * 9;
 
 int main() {
 
-    int ** puzzle;
+    Sudoku* sudoku = setUpPuzzle(createPuzzle());
 
-    Square*** sudoku;
+    printf("Original Puzzle:\n\n");
 
-    puzzle = createPuzzle();
+    printPuzzle(sudoku->squares);
 
-    sudoku = setUpPuzzle(puzzle);
+    int progress;
 
-    printPuzzle(sudoku);
+    while (UNSOLVED > 0) {
+        progress = checkPuzzle(sudoku->squares, sudoku->boxes);
+        if (progress == 0) {
+            printf("\nFailed to solve puzzle.\n\n");
+            break;
+        }
+    }
 
-    checkPuzzle(sudoku);
+    printf("\n\nSolved Puzzle:\n\n");
 
-    printPuzzle(sudoku);
+    printPuzzle(sudoku->squares);
 
     return 0;
 
