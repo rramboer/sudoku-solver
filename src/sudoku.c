@@ -12,11 +12,8 @@ int main() {
 
     printPuzzle(sudoku->squares);
 
-    int progress;
-
     while (UNSOLVED > 0) {
-        progress = checkPuzzle(sudoku->squares, sudoku->boxes);
-        if (progress == 0) {
+        if (!checkPuzzle(sudoku->squares, sudoku->boxes)) {
             printf("\nFailed to solve puzzle.\n\n");
             break;
         }

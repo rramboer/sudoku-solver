@@ -52,4 +52,6 @@ int updateBoxes(Square ***sudoku, int row, int column);
 
 int boxSingles(Square ***sudoku, Box **boxes);
 
+int checkRows(Square ***sudoku);
+
 #endif
