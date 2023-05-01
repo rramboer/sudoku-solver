@@ -12,16 +12,20 @@ int main() {
 
     printPuzzle(sudoku->squares);
 
+    _Bool solvable = true;
+
     while (UNSOLVED > 0) {
         if (!checkPuzzle(sudoku->squares, sudoku->boxes)) {
             printf("\nFailed to solve puzzle.\n\n");
+            solvable = false;
             break;
         }
     }
 
-    printf("\n\nSolved Puzzle:\n\n");
-
-    printPuzzle(sudoku->squares);
+    if (solvable) {
+        printf("\n\nSolved puzzle:\n\n");
+        printPuzzle(sudoku->squares);
+    }
 
     return 0;
 
