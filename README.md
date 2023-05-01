@@ -1,7 +1,7 @@
 # Sudoku Solver
 
 ## Usage
-    Demo: 
+Demo: 
     `make demo`
-    Run on your own sudoku: 
+Run on your own sudoku: 
     `make`
