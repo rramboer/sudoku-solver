@@ -1,4 +1,5 @@
 #include "../include/sudoku.h"
+#include <stdio.h>
 
 int SIZE_ROWS = 9;
 int SIZE_COLUMNS = 9;

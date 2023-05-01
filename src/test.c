@@ -52,9 +52,8 @@ int testSudoku() {
     read("data/tests.txt", games, /*column2,*/ &num_rows, input);
     for (int i = 0; i < num_rows; i++) {
         int** puzzle = createPuzzleTest(games[i]);
-        Sudoku* sudoku = setUpPuzzle(puzzle);
-        // GAME SETUP IS CORRECT HERE
         UNSOLVED = 81;
+        Sudoku* sudoku = setUpPuzzle(puzzle);
         while (UNSOLVED > 0) {
             if (!checkPuzzle(sudoku->squares, sudoku->boxes)) {
                 fail++;
