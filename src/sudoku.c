@@ -7,11 +7,20 @@ int UNSOLVED = 9 * 9;
 int main(int argc, char** argv) {
 
     _Bool demo = false;
+    _Bool test = false;
 
     for (int i = 0; i < argc; i++) {
-        if (strcmp(argv[i], "--demo") == 0 || strcmp(argv[i], "-d") == 0) {
+        if (strcmp(argv[i], "--demo") == 0) {
             demo = true;
         }
+        else if (strcmp(argv[i], "--test") == 0) {
+            test = true;
+        }
+    }
+
+    if (test) {
+        testSudoku();
+        return 0;
     }
 
     Sudoku* sudoku = setUpPuzzle(createPuzzle(demo));

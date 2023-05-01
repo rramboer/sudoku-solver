@@ -124,9 +124,12 @@ int ** createPuzzle(_Bool demo) {
         { 0, 0, 0,  1, 0, 0,  8, 6, 0 }
     };
     if (!demo) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                scanf("%d", &array[i][j]);
+        printf("Enter the puzzle in a continuous string of digits with 0s for empty spaces.\n");
+        char input[81];
+        scanf("%s", input);
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                array[row][col] = input[row * 9 + col] - '0';
             }
         }
     }

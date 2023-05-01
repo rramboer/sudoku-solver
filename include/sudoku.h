@@ -56,4 +56,6 @@ int boxSingles(Square ***sudoku, Box **boxes);
 
 int checkRows(Square ***sudoku);
 
+int testSudoku();
+
 #endif

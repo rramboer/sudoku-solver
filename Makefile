@@ -10,6 +10,8 @@ all: sudoku run clean
 
 demo: sudoku demo_run clean
 
+test: sudoku run clean
+
 sudoku:
 	$(CC) $(SOURCES) $(CFLAGS) -o $@
 
@@ -18,6 +20,9 @@ run:
 
 demo_run:
 	./sudoku -d
+
+test_run:
+	./sudoku -t
 
 clean:
 	rm sudoku
