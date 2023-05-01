@@ -12,11 +12,13 @@ int main() {
 
     puzzle = createPuzzle();
 
-    printPuzzle(puzzle);
-
     sudoku = setUpPuzzle(puzzle);
 
+    printPuzzle(sudoku);
+
     checkPuzzle(sudoku);
+
+    printPuzzle(sudoku);
 
     return 0;
 

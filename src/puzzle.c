@@ -4,9 +4,12 @@ Square*** setUpPuzzle(int ** puzzle) {
     int i;
     int j;
     int x;
+    int currentBox = 0;
     Square*** sudoku;
-
+    Box ** boxes;
     sudoku = (Square ***) malloc(9 * sizeof(Square **));
+    boxes = createBoxes();
+
     for (i = 0; i < SIZE_ROWS; i++) {
         sudoku[i] = (Square **) malloc(9 * sizeof(Square *));
         for (j = 0; j < SIZE_COLUMNS; j++) {
@@ -14,9 +17,27 @@ Square*** setUpPuzzle(int ** puzzle) {
             sudoku[i][j]->number = puzzle[i][j];
             sudoku[i][j]->row = i;
             sudoku[i][j]->column = j;
+            sudoku[i][j]->solvable = 9;
+
+            boxes[currentBox]->squares[boxes[currentBox]->numbers] = sudoku[i][j];
+            sudoku[i][j]->box = boxes[currentBox];
+            boxes[currentBox]->numbers++;
+
             for (x = 0; x < 9; x++) {
                 sudoku[i][j]->possible[x] = 0;
             }
+
+            if (j == 2 || j == 5) {
+                currentBox++;
+            }
+
+        }
+        currentBox -= 2;
+        if (i == 2) {
+            currentBox = 3;
+        }
+        else if (i == 5) {
+            currentBox = 6;
         }
     }
 
@@ -25,6 +46,7 @@ Square*** setUpPuzzle(int ** puzzle) {
             if (sudoku[i][j]->number != 0) {
                 sudoku[i][j]->solvable = 0;
                 updateSudoku(sudoku, i, j);
+                updateBoxes(sudoku, i, j);
                 UNSOLVED--;
             }
         }
@@ -63,6 +85,7 @@ int checkPuzzle(Square*** sudoku) {
             if (sudoku[i][j]->solvable == 1) {
                 solveSquare(sudoku[i][j]);
                 updateSudoku(sudoku, i, j);
+                updateBoxes(sudoku, i, j);
             }
         }
     }
@@ -97,7 +120,7 @@ int ** createPuzzle() {
     return puzzle;
 }
 
-void printPuzzle(int ** puzzle) {
+void printPuzzle(Square*** puzzle) {
     int i;
     int j;
     for (i = 0; i < 9; i++) {
@@ -108,7 +131,7 @@ void printPuzzle(int ** puzzle) {
             if (j % 3 == 0) {
                 printf("| ");
             }
-            printf("%d ", puzzle[i][j]);
+            printf("%d ", puzzle[i][j]->number);
         }
         printf("|\n");
     }
