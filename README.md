@@ -4,5 +4,5 @@
 Demo: 
     `make demo`
 
-Run on your own sudoku: 
+Input your own sudoku game: 
     `make`
