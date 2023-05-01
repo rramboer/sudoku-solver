@@ -5,7 +5,6 @@ int ** createPuzzleTest(const char input[]) {
     int ** puzzle;
     int i;
     int j;
-    //printf("%s", input);
 
     puzzle = (int **) malloc(9 * sizeof(int *));
     for (i = 0; i < 9; i++) {
@@ -30,9 +29,9 @@ void read(const char* filename, char* column1[], /*int* column2,*/ int* num_rows
     }
     int i = 0;
     char line[85];
-    while (fgets(line, 85, fp) && i < numTests) {
-        column1[i] = line;
-        //printf("%s", column1[i]); CORRECT HERE
+    while (fgets(line, sizeof(line), fp) != NULL && i < numTests) {
+        column1[i] = malloc(85 * sizeof(char));
+        strcpy(column1[i], line);
         i++;
     }
     *num_rows = i;
@@ -51,23 +50,21 @@ int testSudoku() {
     scanf("%d", &input);
 
     read("data/tests.txt", games, /*column2,*/ &num_rows, input);
-
     for (int i = 0; i < num_rows; i++) {
-        printf("%s", games[i]);
         int** puzzle = createPuzzleTest(games[i]);
         Sudoku* sudoku = setUpPuzzle(puzzle);
+        // GAME SETUP IS CORRECT HERE
         UNSOLVED = 81;
         while (UNSOLVED > 0) {
-            //printPuzzle(sudoku->squares);
             if (!checkPuzzle(sudoku->squares, sudoku->boxes)) {
                 fail++;
-                printf("Test %d: FAILED\n", i);
+                //printf("Test %d: FAILED\n", i);
                 break;
             }
         }
         if (UNSOLVED == 0) {
             pass++;
-            printf("Test %d: PASSED\n", i);
+            //printf("Test %d: PASSED\n", i);
         }
         //free(puzzle);
         //free(sudoku);
