@@ -10,7 +10,7 @@ all: sudoku run clean
 
 demo: sudoku demo_run clean
 
-test: sudoku run clean
+test: sudoku test_run clean
 
 sudoku:
 	$(CC) $(SOURCES) $(CFLAGS) -o $@

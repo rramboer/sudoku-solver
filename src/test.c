@@ -9,7 +9,7 @@ int ** createPuzzleTest(const char* input) {
 
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 9; col++) { 
-            array[row][col] = atoi(input); // TODO
+            array[row][col] = input[9 * row + col] - '0';
         }
     }
     
@@ -47,22 +47,29 @@ int testSudoku() {
     char* games[1000000];
     // int column2[1000000];
 
-    // Read in an integer
     printf("Run the following percentage of the test suite (formatted as an integer): ");
     int input;
     scanf("%d", &input);
 
-    // Read in the CSV file
     read("data/tests.txt", games, /*column2,*/ &num_rows, input);
 
-    // Run the tests TODO
     for (int i = 0; i < num_rows; i++) {
-        Sudoku* sudoku = setUpPuzzle(createPuzzleTest(games[i]));
+        int** puzzle = createPuzzleTest(games[i]);
+        Sudoku* sudoku = setUpPuzzle(puzzle);
+        UNSOLVED = 81;
         while (UNSOLVED > 0) {
             if (!checkPuzzle(sudoku->squares, sudoku->boxes)) {
+                fail++;
+                printf("Test %d: FAILED\n", i);
                 break;
             }
         }
+        if (UNSOLVED == 0) {
+            pass++;
+            printf("Test %d: PASSED\n", i);
+        }
+        free(puzzle);
+        free(sudoku);
     }
 
     // Print the results
