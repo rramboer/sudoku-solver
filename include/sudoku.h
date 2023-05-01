@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 extern int UNSOLVED;
 extern int SIZE_ROWS;
@@ -33,7 +34,7 @@ typedef struct Square {
   int column;
 } Square;
 
-int **createPuzzle();
+int **createPuzzle(_Bool demo);
 
 void printPuzzle(Square ***puzzle);
 

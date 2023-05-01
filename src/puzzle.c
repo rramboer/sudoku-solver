@@ -106,7 +106,7 @@ int checkPuzzle(Square*** sudoku, Box** boxes) {
 }
 
 
-int ** createPuzzle() {
+int ** createPuzzle(_Bool demo) {
     int ** puzzle;
     int i;
     int j;
@@ -123,6 +123,14 @@ int ** createPuzzle() {
         { 6, 0, 0,  0, 2, 8,  0, 7, 9 },
         { 0, 0, 0,  1, 0, 0,  8, 6, 0 }
     };
+    if (!demo) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                scanf("%d", &array[i][j]);
+            }
+        }
+    }
+    
     puzzle = (int **) malloc(9 * sizeof(int *));
     for (i = 0; i < 9; i++) {
         puzzle[i] = (int *) malloc(9 * sizeof(int));
