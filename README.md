@@ -1,7 +1,7 @@
 # Sudoku Solver
 
 ## Usage
-Demo: 
+Demo Game: 
     `make demo`
 
 Input your own sudoku game: 
